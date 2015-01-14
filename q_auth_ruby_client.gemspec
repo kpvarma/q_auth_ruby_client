@@ -11,13 +11,12 @@ Gem::Specification.new do |s|
   s.email       = ["krshnaprsad@gmail.com"]
   s.homepage    = "http://kpvarma.com"
   s.summary     = "QAuthRubyClient is a Q-Apps client engine"
-  s.description = "QAuthRubyClient can be mounted into a Q-App so that QAuthRubyClient will deal with all q-apps services like authentication"
+  s.description = "QAuthRubyClient can be mounted into any Q-App to deal with all q-apps services like authentication"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
-  s.add_dependency "rails", "~> 4.1.5"
-  s.add_dependency "typhoeus"
-  s.add_development_dependency "sqlite3"
-
+  s.add_dependency "rails", '~> 4.1',">= 4.1.5"
+  s.add_dependency "typhoeus", '~> 0.6',">= 0.6.9"
+  s.add_development_dependency "sqlite3", '~> 1.3',">= 1.3.10"
 end
