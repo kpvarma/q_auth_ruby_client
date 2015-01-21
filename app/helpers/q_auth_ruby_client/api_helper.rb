@@ -47,6 +47,19 @@ module QAuthRubyClient
       ["true", "t", "1", "yes"].include?(params[:debug].to_s.downcase.strip) # || Rails.env == "development"
     end
 
+    # def prepare_data
+    #   @data = yield
+    #   @body = {}
+    # end
+
+    # def render_json(**options)
+    #   options.reverse_merge!(
+    #     status: 200,
+    #     success: true,
+    #     body: @body
+    #   )
+    # end
+
     ## This method will accept a proc, execute it and render the json
     def render_json_response(proc_code)
 

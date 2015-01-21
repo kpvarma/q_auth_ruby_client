@@ -31,14 +31,10 @@ class QAuthRubyClient::SessionsController < ApplicationController
   end
 
   def sign_out
-
-    store_flash_message("You have successfully signed out", :notice)
-
+    set_flash_message("You have successfully signed out", :notice)
     # Reseting the auth token for user when he logs out.
     # @current_user.update_attribute :auth_token, SecureRandom.hex
-
     session.delete(:id)
-
     redirect_to default_redirect_url_after_sign_out
   end
 
