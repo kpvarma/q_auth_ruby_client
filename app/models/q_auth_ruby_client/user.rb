@@ -33,8 +33,8 @@ class QAuthRubyClient::User < ActiveRecord::Base
 
     if user
       # Corner Case : If there are (by chance) multiple rows, we need to remove them.
-      users.delete(user)
-      users.destroy_all if users.count > 0
+      #users.delete(user)
+      #users.destroy if users.count > 0
       return user
     else
       # Create a new user
