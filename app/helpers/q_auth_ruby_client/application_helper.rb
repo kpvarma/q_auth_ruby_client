@@ -11,14 +11,14 @@ module QAuthRubyClient
       photo_object =  object.send(assoc_name) if object.respond_to?(assoc_name)
 
       if photo_object.present? && photo_object.persisted?
-        edit_admin_image_path(photo_object,
+        main_app.edit_admin_image_path(photo_object,
                                    :redirect_url => redirect_url,
                                    :imageable_id => object.id,
                                    :imageable_type => object.class.to_s,
                                    :image_type => photo_object.class.name)
       else
         photo_object = object.send("build_#{assoc_name}")
-        new_admin_image_path(:redirect_url => redirect_url,
+        main_app.new_admin_image_path(:redirect_url => redirect_url,
                                    :imageable_id => object.id,
                                    :imageable_type => object.class.to_s,
                                    :image_type => photo_object.class.name)
