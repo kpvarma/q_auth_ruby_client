@@ -61,7 +61,7 @@ module QAuthRubyClient
 
     # This method is usually used as a before filter from admin controllers to ensure that the logged in user is an admin
     def require_admin
-      unless @current_user.is_admin?
+      unless (@current_user && @current_user.is_admin?)
         set_notification_messages(I18n.t("authentication.permission_denied_heading"), I18n.t("authentication.permission_denied_message"), :error)
         redirect_to_sign_in_page
         return
