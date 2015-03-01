@@ -21,7 +21,7 @@ module QAuthRubyClient
 
       @default_redirect_url_after_sign_in = "/dashboard"
       @default_redirect_url_after_sign_out = "/"
-      @my_profile_url = "/user/profile"
+      @my_profile_url = "/users/profile"
       @default_sign_in_url = "/sign_in"
     end
 
