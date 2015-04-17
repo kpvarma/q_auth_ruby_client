@@ -4,6 +4,14 @@ class QAuthRubyClient::User < ActiveRecord::Base
 
   self.table_name = 'users'
 
+  # return an active record relation object with the search query in its where clause
+  # Return the ActiveRecord::Relation object
+  # == Examples
+  #   >>> user.search(query)
+  #   => ActiveRecord::Relation object
+  scope :search, lambda {|query| where("LOWER(users.name) LIKE LOWER('%#{query}%') OR LOWER(users.username) LIKE LOWER('%#{query}%') OR LOWER(users.email) LIKE LOWER('%#{query}%') OR LOWER(users.phone) LIKE LOWER('%#{query}%') OR LOWER(users.city) LIKE LOWER('%#{query}%') OR LOWER(users.designation) LIKE LOWER('%#{query}%') OR LOWER(users.department) LIKE LOWER('%#{query}%')")}
+
+
   def self.fetch_all_users(auth_token)
     qauth_url = QAuthRubyClient.configuration.q_auth_url + "/api/v1/members"
     request = Typhoeus::Request.new(
