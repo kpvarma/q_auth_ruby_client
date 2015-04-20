@@ -60,6 +60,7 @@ class QAuthRubyClient::User < ActiveRecord::Base
     self.state = data["state"]
     self.country = data["country"]
 
+    self.auth_token = data["auth_token"]
     self.token_created_at = data["token_created_at"] || Time.now - 1.day
     self.user_type = data["user_type"]
 
@@ -91,6 +92,18 @@ class QAuthRubyClient::User < ActiveRecord::Base
     else
       return response
     end
+  end
+
+  def self.destroy_session(auth_token)
+    qauth_url = QAuthRubyClient.configuration.q_auth_url + "/api/v1/sign_out"
+    request = Typhoeus::Request.new(
+      qauth_url,
+      method: :delete,
+      headers: {"Authorization" => "Token token=#{auth_token}"},
+      verbose: false
+    )
+    response = JSON.parse(request.run.body)
+    return response
   end
 
   def token_expired?
